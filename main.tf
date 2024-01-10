@@ -1,8 +1,8 @@
+data "aws_caller_identity" "current" {}
+
 data "aws_availability_zones" "available" {
   state = "available"
 }
-
-data "aws_caller_identity" "current" {}
 
 module "vpc" {
   source             = "github.com/terraform-aws-modules/terraform-aws-vpc"
@@ -31,10 +31,9 @@ module "eks" {
   control_plane_subnet_ids       = module.vpc.public_subnets
   create_kms_key                 = true
   cluster_endpoint_public_access = true
-  manage_aws_auth_configmap = true
   eks_managed_node_groups = {
     one = {
-      name = "node-group-1" //node-group-1-7128931289u8912
+      name = "node-group-1"
 
       instance_types = ["t3.micro"]
 
@@ -43,7 +42,7 @@ module "eks" {
       desired_size = 1
     }
     two = {
-      name = "node-group-2" //node-group-2-7128931289u8912
+      name = "node-group-2"
 
       instance_types = ["t3.micro"]
 
