@@ -17,7 +17,6 @@ variable "cidr_block" {
 }
 
 variable "eks_reader_roles" {
-  description = "List of user maps to add to the aws-auth configmap"
+  description = "List of user maps to add to the aws-auth configmap."
   type        = list(any)
-  default     = ["arn:aws:iam::338096867149:user/danylo_safankov"]
 }

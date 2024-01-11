@@ -1,27 +1,3 @@
-# data "http" "wait_for_cluster" {
-#   url            = format("%s/healthz", module.eks.cluster_endpoint)
-#   ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
-#   timeout        = 60
-#   depends_on = [ module.eks ]
-# }
-
-# data "aws_eks_node_groups" "node_groups" {
-#   cluster_name = module.eks.cluster_name // var.cluster_name
-#   # depends_on = [ module.eks, data.http.wait_for_cluster ]
-# }
-
-# data "aws_eks_node_group" "node_group" {
-#   for_each = data.aws_eks_node_groups.node_groups.names
-
-#   cluster_name    = module.eks.cluster_name
-#   node_group_name = each.value
-#   # depends_on = [ data.aws_eks_node_groups.node_groups ]
-# }
-
-# output "eks" {
-#   value = module.eks.eks_managed_node_groups
-# }
-
 resource "kubernetes_cluster_role" "eks_console_dashboard_read_only" {
   metadata {
     name = "eks-console-dashboard-read-only"
