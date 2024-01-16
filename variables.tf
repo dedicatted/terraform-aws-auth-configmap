@@ -16,7 +16,13 @@ variable "cidr_block" {
   description = "CIDR block for the VPC."
 }
 
-variable "eks_reader_roles" {
+variable "eks_admins" {
   description = "List of user maps to add to the aws-auth configmap."
-  type        = list(any)
+  type        = list(object({
+    userarn   = string
+    username  = string
+    groups    = list(string)
+  }))
+  default = []
 }
+
